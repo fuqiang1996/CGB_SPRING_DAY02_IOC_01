@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+    default-lazy-init="default"
+    xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+    xsi:schemaLocation="  
+       http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans-4.3.xsd  
+       http://www.springframework.org/schema/mvc   
+       http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd   
+       http://www.springframework.org/schema/tx   
+       http://www.springframework.org/schema/tx/spring-tx-4.3.xsd   
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+       http://www.springframework.org/schema/util 
+       http://www.springframework.org/schema/util/spring-util-4.3.xsd
+       http://www.springframework.org/schema/data/jpa 
+       http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.3.xsd"> 
+       
+	<bean id="dataSource" class="beans.DataSource" />
+	<!-- 自动装配
+		byName 按属性名从容器中查找 名字相同的bean然后进行注入 假如出现了名字相同,但类型不同 的bean对象时,会注入失败
+		byType 先从容器中查找属性类型相匹配的值,然后找按类中对应的set方法(看参数类型)最后通过set方法为对象属性注入值,假如容器中
+		出现多个类型相同的对象 注入失败
+		constructor 先从容器中查找属性类型相匹配的值 然后找类中对应的构造方法(看参数类型)最后通过构造方法为对象的属性进行注入值
+		假如容器中出现相同的对象,此时在比对参数名字,假如有同名的则直接注入 没有同名的会注入失败.
+	 -->
+	<bean id="jdbcTemplate" class="beans.JdbcTemplate" autowire="byType">
+	</bean>
+	<bean id="str" class="java.lang.String" />
+	<bean id="map" class="java.util.HashMap" />
+</beans>
